@@ -30,3 +30,22 @@ let test5() =
      let xs = [1;2;3]
      for x in xs do
          printfn "%A" x
+
+// more complex enumerable expression
+let test6() = 
+    for i in (
+                [1;2;3;4]
+                |> List.map (fun x ->
+                    x + 1)
+                ) do
+        printfn "%O" i
+ 
+// multiline body 
+let test7() = 
+    for i in (
+                [1;2;3;4]
+                |> List.map (fun x ->
+                    x + 1)
+                ) do
+        let tmp = i + 1
+        printfn "%O" tmp

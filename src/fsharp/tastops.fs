@@ -7805,8 +7805,9 @@ let DetectAndOptimizeForExpression g option expr =
               TryFinally (WhileLoopForCompiledForEachExpr (_, Let (elemVar,_,_,bodyExpr), _), _))) ->
 
       let m = enumerableExpr.Range
+      let mBody = bodyExpr.Range
 
-      let spForLoop     = match enumeratorBind with SequencePointAtBinding(spStart) -> SequencePointAtForLoop(spStart)  |  _ -> NoSequencePointAtForLoop
+      let spForLoop,mForLoop = match enumeratorBind with SequencePointAtBinding(spStart) -> SequencePointAtForLoop(spStart),spStart  |  _ -> NoSequencePointAtForLoop,m
       let spWhileLoop   = match enumeratorBind with SequencePointAtBinding(spStart) -> SequencePointAtWhileLoop(spStart)|  _ -> NoSequencePointAtWhileLoop
 
       match option,enumerableExpr with
@@ -7826,11 +7827,12 @@ let DetectAndOptimizeForExpression g option expr =
         let idxVar      ,idxExpr    = mkCompGenLocal m "idx" g.int32_ty
 
         let startExpr               = mkZero g m
-        let lengthExpr              = mkGetStringLength g m strExpr
-        let finishExpr              = mkDecr g m lengthExpr
-        let charExpr                = mkGetStringChar g m strExpr idxExpr
-        let bodyExpr                = mkCompGenLet m elemVar charExpr bodyExpr
-        let forExpr                 = mkFastForLoop  g (spForLoop,m,idxVar,startExpr,true,finishExpr,bodyExpr)
+        let lengthExpr              = mkGetStringLength g mForLoop strExpr
+        let finishExpr              = mkDecr g mForLoop lengthExpr
+        let charExpr                = mkGetStringChar g mBody strExpr idxExpr
+        let loopItemExpr            = mkCoerceIfNeeded g elemVar.Type g.char_ty charExpr  // for compat reasons, loop item over string is sometimes object, not char
+        let bodyExpr                = mkCompGenLet mBody elemVar loopItemExpr bodyExpr
+        let forExpr                 = mkFastForLoop g (spForLoop,m,idxVar,startExpr,true,finishExpr,bodyExpr)
         let expr                    = mkCompGenLet m strVar enumerableExpr forExpr
 
         expr
@@ -7852,15 +7854,15 @@ let DetectAndOptimizeForExpression g option expr =
         let elemTy                      = destListTy g ty
 
         let guardExpr                   = mkNonNullTest g m nextExpr
-        let headOrDefaultExpr           = mkUnionCaseFieldGetUnproven(currentExpr,g.cons_ucref,[elemTy],IndexHead,m)
-        let tailOrNullExpr              = mkUnionCaseFieldGetUnproven(currentExpr,g.cons_ucref,[elemTy],IndexTail,m)
+        let headOrDefaultExpr           = mkUnionCaseFieldGetUnproven(currentExpr,g.cons_ucref,[elemTy],IndexHead,mBody)
+        let tailOrNullExpr              = mkUnionCaseFieldGetUnproven(currentExpr,g.cons_ucref,[elemTy],IndexTail,mBody)
         let bodyExpr                    =
-            mkCompGenLet m elemVar headOrDefaultExpr
-                (mkCompGenSequential m
+            mkCompGenLet mBody elemVar headOrDefaultExpr
+                (mkCompGenSequential mBody
                     bodyExpr
-                    (mkCompGenSequential m
-                        (mkValSet m (mkLocalValRef currentVar) nextExpr)
-                        (mkValSet m (mkLocalValRef nextVar) tailOrNullExpr)
+                    (mkCompGenSequential mBody
+                        (mkValSet mBody (mkLocalValRef currentVar) nextExpr)
+                        (mkValSet mBody (mkLocalValRef nextVar) tailOrNullExpr)
                     )
                 )
         let whileExpr                   = mkWhile g (spWhileLoop, WhileLoopForCompiledForEachExprMarker, guardExpr, bodyExpr, m)

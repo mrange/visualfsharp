@@ -46,3 +46,22 @@ let test7() =
      let mutable z = 0
      for x in xs do
          z <- z + (int x)
+
+// more complex enumerable expression
+let test8() = 
+    for i in ( 
+                "1234"
+                |> String.map (fun x ->
+                    char ((int x) + 1))
+                ) do
+        printfn "%O" i
+
+// multiline body        
+let test9() = 
+    for i in ( 
+                "1234"
+                |> String.map (fun x ->
+                    char ((int x) + 1))
+                ) do
+        let tmp = System.String.Format("{0} foo", i)
+        printfn "%O" tmp
