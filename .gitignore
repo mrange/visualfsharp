@@ -74,6 +74,9 @@ src/fsharp/FSharp.LanguageService.Compiler/illex.*
 src/fsharp/FSharp.LanguageService.Compiler/ilpars.*
 src/fsharp/FSharp.LanguageService.Compiler/lex.*
 src/fsharp/FSharp.LanguageService.Compiler/pars.*
+src/fsharp/FSharp.LanguageService.Compiler/pplex.fs
+src/fsharp/FSharp.LanguageService.Compiler/pppars.fs
+src/fsharp/FSharp.LanguageService.Compiler/pppars.fsi
 tests/fsharp/typecheck/sigs/*.dll
 tests/fsharp/typecheck/sigs/*.exe
 vsintegration/src/unittests/Unittests.fsi

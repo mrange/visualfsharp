@@ -27,13 +27,11 @@ type LexResourceManager =
     new : unit -> LexResourceManager
 
 type lexargs =
-    {
-        defines             : string list
-        ifdefStack          : LexerIfdefStack
-        resourceManager     : LexResourceManager
-        lightSyntaxStatus   : LightSyntaxStatus
-        errorLogger         : ErrorLogger
-    }
+  { defines: string list;
+    ifdefStack: LexerIfdefStack;
+    resourceManager: LexResourceManager;
+    lightSyntaxStatus: LightSyntaxStatus;
+    errorLogger: ErrorLogger}
 
 val resetLexbufPos : string -> UnicodeLexing.Lexbuf -> unit
 val mkLexargs : 'a * string list * LightSyntaxStatus * LexResourceManager * LexerIfdefStack * ErrorLogger -> lexargs

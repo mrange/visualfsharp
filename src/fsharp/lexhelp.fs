@@ -36,6 +36,7 @@ type LightSyntaxStatus(initial:bool,warn:bool) =
     member x.ExplicitlySet = status.IsSome
     member x.WarnOnMultipleTokens = warn
     
+
 /// Manage lexer resources (string interning)
 [<Sealed>]
 type LexResourceManager() =
@@ -48,23 +49,19 @@ type LexResourceManager() =
         (strings.[s] <- res; res)
               
 /// Lexer parameters 
-type lexargs =
-    {
-        defines             : string list
-        ifdefStack          : LexerIfdefStack
-        resourceManager     : LexResourceManager
-        lightSyntaxStatus   : LightSyntaxStatus
-        errorLogger         : ErrorLogger
-    }
+type lexargs =  
+    { defines: string list;
+      ifdefStack: LexerIfdefStack;
+      resourceManager: LexResourceManager;
+      lightSyntaxStatus : LightSyntaxStatus;
+      errorLogger: ErrorLogger }
 
 let mkLexargs (_filename,defines,lightSyntaxStatus,resourceManager,ifdefStack,errorLogger) =
-    {
-        defines             = defines
-        ifdefStack          = ifdefStack
-        resourceManager     = resourceManager
-        lightSyntaxStatus   = lightSyntaxStatus
-        errorLogger         = errorLogger
-    }
+    { defines = defines;
+      ifdefStack= ifdefStack;
+      lightSyntaxStatus=lightSyntaxStatus;
+      resourceManager=resourceManager;
+      errorLogger=errorLogger }
 
 /// Register the lexbuf and call the given function
 let reusingLexbufForParsing lexbuf f = 
