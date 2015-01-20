@@ -174,8 +174,8 @@ let result =
     +   verify e19  0x080000
     +   verify e20  0x100000
     +   verify e21  0x200000
-    +   verify e22  0x200000
-    +   verify e23  0x200000
+    +   verify e22  0x400000
+    +   verify e23  0x800000
 
 if result <> 0 then printfn "ExtendedIfGrammar failed: 0x%X" result
 
