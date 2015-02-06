@@ -7829,7 +7829,7 @@ let DetectAndOptimizeForExpression g option expr =
         let startExpr               = mkZero g m
         let lengthExpr              = mkGetStringLength g mForLoop strExpr
         let finishExpr              = mkDecr g mForLoop lengthExpr
-        let charExpr                = mkGetStringChar g mBody strExpr idxExpr
+        let charExpr                = mkGetStringChar g m strExpr idxExpr
         let loopItemExpr            = mkCoerceIfNeeded g elemVar.Type g.char_ty charExpr  // for compat reasons, loop item over string is sometimes object, not char
         let bodyExpr                = mkCompGenLet mBody elemVar loopItemExpr bodyExpr
         let forExpr                 = mkFastForLoop g (spForLoop,m,idxVar,startExpr,true,finishExpr,bodyExpr)
@@ -7854,10 +7854,10 @@ let DetectAndOptimizeForExpression g option expr =
         let elemTy                      = destListTy g ty
 
         let guardExpr                   = mkNonNullTest g m nextExpr
-        let headOrDefaultExpr           = mkUnionCaseFieldGetUnproven(currentExpr,g.cons_ucref,[elemTy],IndexHead,mBody)
+        let headOrDefaultExpr           = mkUnionCaseFieldGetUnproven(currentExpr,g.cons_ucref,[elemTy],IndexHead,m)
         let tailOrNullExpr              = mkUnionCaseFieldGetUnproven(currentExpr,g.cons_ucref,[elemTy],IndexTail,mBody)
         let bodyExpr                    =
-            mkCompGenLet mBody elemVar headOrDefaultExpr
+            mkCompGenLet m elemVar headOrDefaultExpr
                 (mkCompGenSequential mBody
                     bodyExpr
                     (mkCompGenSequential mBody

@@ -1,5 +1,5 @@
 
-//  Microsoft (R) .NET Framework IL Disassembler.  Version 4.0.30319.1
+//  Microsoft (R) .NET Framework IL Disassembler.  Version 4.0.30319.33440
 //  Copyright (c) Microsoft Corporation.  All rights reserved.
 
 
@@ -21,7 +21,7 @@
                                                                                                       int32,
                                                                                                       int32) = ( 01 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 ) 
 
-  // 
+  // --- The following custom attribute is added automatically, do not uncomment -------
   //  .custom instance void [mscorlib]System.Diagnostics.DebuggableAttribute::.ctor(valuetype [mscorlib]System.Diagnostics.DebuggableAttribute/DebuggingModes) = ( 01 00 03 00 00 00 00 00 ) 
 
   .hash algorithm 0x00008004
@@ -29,20 +29,20 @@
 }
 .mresource public FSharpSignatureData.ForEachOnList01
 {
-  // Offset: 0x00000000 Length: 0x00000307
+  // Offset: 0x00000000 Length: 0x000002EB
 }
 .mresource public FSharpOptimizationData.ForEachOnList01
 {
-  // Offset: 0x00000310 Length: 0x000000DB
+  // Offset: 0x000002F0 Length: 0x000000DB
 }
 .module ForEachOnList01.dll
-// MVID: {547FB1E8-56DF-F74F-A745-0383E8B17F54}
+// MVID: {54D54537-56DF-F74F-A745-03833745D554}
 .imagebase 0x00400000
 .file alignment 0x00000200
 .stackreserve 0x00100000
 .subsystem 0x0003       // WINDOWS_CUI
 .corflags 0x00000001    //  ILONLY
-// Image base: 0x00680000
+// Image base: 0x014C0000
 
 
 // =============== CLASS MEMBERS DECLARATION ===================
@@ -57,7 +57,7 @@
     .method assembly specialname rtspecialname 
             instance void  .ctor() cil managed
     {
-      // 
+      // Code size       7 (0x7)
       .maxstack  8
       IL_0000:  ldarg.0
       IL_0001:  call       instance void class [FSharp.Core]Microsoft.FSharp.Core.FSharpFunc`2<int32,int32>::.ctor()
@@ -67,10 +67,10 @@
     .method public strict virtual instance int32 
             Invoke(int32 x) cil managed
     {
-      // 
+      // Code size       5 (0x5)
       .maxstack  8
       .language '{AB4F38C9-B6E6-43BA-BE3B-58080B2CCCE3}', '{994B45C4-E6E9-11D2-903F-00C04FA302A1}', '{5A869D0B-6611-11D3-BD2A-0000F80849BD}'
-      .line 39,39 : 21,26 'C:\\Users\\latkin\\Source\\Repos\\visualfsharp\\tests\\fsharpqa\\Source\\Optimizations\\ForLoop\\ForEachOnList01.fs'
+      .line 39,39 : 21,26 ''
       IL_0000:  nop
       IL_0001:  ldarg.1
       IL_0002:  ldc.i4.1
@@ -86,7 +86,7 @@
     .method assembly specialname rtspecialname 
             instance void  .ctor() cil managed
     {
-      // 
+      // Code size       7 (0x7)
       .maxstack  8
       IL_0000:  ldarg.0
       IL_0001:  call       instance void class [FSharp.Core]Microsoft.FSharp.Core.FSharpFunc`2<int32,int32>::.ctor()
@@ -96,7 +96,7 @@
     .method public strict virtual instance int32 
             Invoke(int32 x) cil managed
     {
-      // 
+      // Code size       5 (0x5)
       .maxstack  8
       .line 48,48 : 21,26 ''
       IL_0000:  nop
@@ -110,7 +110,7 @@
 
   .method public static void  test1(class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32> lst) cil managed
   {
-    // 
+    // Code size       42 (0x2a)
     .maxstack  4
     .locals init ([0] int32 z,
              [1] class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32> V_1,
@@ -132,7 +132,7 @@
     IL_000e:  cgt.un
     IL_0010:  brfalse.s  IL_0029
 
-    .line 10,10 : 10,20 ''
+    .line 9,9 : 15,18 ''
     IL_0012:  ldloc.1
     IL_0013:  call       instance !0 class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32>::get_HeadOrDefault()
     IL_0018:  stloc.3
@@ -153,7 +153,7 @@
 
   .method public static void  test2() cil managed
   {
-    // 
+    // Code size       64 (0x40)
     .maxstack  6
     .locals init ([0] int32 z,
              [1] class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32> V_1,
@@ -184,7 +184,7 @@
     IL_0024:  cgt.un
     IL_0026:  brfalse.s  IL_003f
 
-    .line 15,15 : 10,20 ''
+    .line 14,14 : 15,22 ''
     IL_0028:  ldloc.1
     IL_0029:  call       instance !0 class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32>::get_HeadOrDefault()
     IL_002e:  stloc.3
@@ -205,7 +205,7 @@
 
   .method public static void  test3() cil managed
   {
-    // 
+    // Code size       68 (0x44)
     .maxstack  6
     .locals init ([0] class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32> xs,
              [1] int32 z,
@@ -240,7 +240,7 @@
     IL_0026:  cgt.un
     IL_0028:  brfalse.s  IL_0043
 
-    .line 21,21 : 10,20 ''
+    .line 20,20 : 15,17 ''
     IL_002a:  ldloc.2
     IL_002b:  call       instance !0 class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32>::get_HeadOrDefault()
     IL_0030:  stloc.s    x
@@ -261,7 +261,7 @@
 
   .method public static void  test4() cil managed
   {
-    // 
+    // Code size       68 (0x44)
     .maxstack  6
     .locals init ([0] int32 z,
              [1] class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32> xs,
@@ -296,7 +296,7 @@
     IL_0026:  cgt.un
     IL_0028:  brfalse.s  IL_0043
 
-    .line 27,27 : 10,20 ''
+    .line 26,26 : 15,17 ''
     IL_002a:  ldloc.2
     IL_002b:  call       instance !0 class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32>::get_HeadOrDefault()
     IL_0030:  stloc.s    x
@@ -317,7 +317,7 @@
 
   .method public static void  test5() cil managed
   {
-    // 
+    // Code size       91 (0x5b)
     .maxstack  6
     .locals init ([0] class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32> xs,
              [1] class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32> V_1,
@@ -349,7 +349,7 @@
     IL_0024:  cgt.un
     IL_0026:  brfalse.s  IL_005a
 
-    .line 32,32 : 10,24 ''
+    .line 31,31 : 15,17 ''
     IL_0028:  ldloc.1
     IL_0029:  call       instance !0 class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32>::get_HeadOrDefault()
     IL_002e:  stloc.3
@@ -376,7 +376,7 @@
 
   .method public static void  test6() cil managed
   {
-    // 
+    // Code size       103 (0x67)
     .maxstack  8
     .locals init ([0] class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32> V_0,
              [1] class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32> V_1,
@@ -410,7 +410,7 @@
     IL_0032:  cgt.un
     IL_0034:  brfalse.s  IL_0066
 
-    .line 41,41 : 9,23 ''
+    .line 37,39 : 17,27 ''
     IL_0036:  ldloc.0
     IL_0037:  call       instance !0 class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32>::get_HeadOrDefault()
     IL_003c:  stloc.2
@@ -437,7 +437,7 @@
 
   .method public static void  test7() cil managed
   {
-    // 
+    // Code size       109 (0x6d)
     .maxstack  8
     .locals init ([0] class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32> V_0,
              [1] class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32> V_1,
@@ -472,7 +472,7 @@
     IL_0032:  cgt.un
     IL_0034:  brfalse.s  IL_006c
 
-    .line 50,50 : 13,16 ''
+    .line 46,48 : 17,27 ''
     IL_0036:  ldloc.0
     IL_0037:  call       instance !0 class [FSharp.Core]Microsoft.FSharp.Collections.FSharpList`1<int32>::get_HeadOrDefault()
     IL_003c:  stloc.2
@@ -513,4 +513,4 @@
 
 // =============================================================
 
-// 
+// *********** DISASSEMBLY COMPLETE ***********************
