@@ -48,17 +48,17 @@ let test7() =
          z <- z + (int x)
 
 // more complex enumerable expression
-let test8() = 
-    for i in ( 
+let test8() =
+    for i in (
                 "1234"
                 |> String.map (fun x ->
                     char ((int x) + 1))
                 ) do
         printfn "%O" i
 
-// multiline body        
-let test9() = 
-    for i in ( 
+// multiline body
+let test9() =
+    for i in (
                 "1234"
                 |> String.map (fun x ->
                     char ((int x) + 1))
