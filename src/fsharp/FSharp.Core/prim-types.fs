@@ -798,9 +798,6 @@ namespace Microsoft.FSharp.Core
 
             let inline GetString (s: string) (n:int) =   s.Chars(n)
 
-            let inline GetStringChar (s: string) (index: int)   = s.Chars(index)
-            let inline GetStringLength (s: string)              = s.Length
-
             let inline CreateInstance<'T when 'T : (new : unit -> 'T) >() = 
                  (System.Activator.CreateInstance() : 'T)
 

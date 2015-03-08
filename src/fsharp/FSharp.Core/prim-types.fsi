@@ -1097,14 +1097,6 @@ namespace Microsoft.FSharp.Core
             //[<CompilerMessage("This function is for use by compiled F# code and should not be used directly", 1204, IsHidden=true)>]
             val inline GetString : source:string -> index:int -> char
 
-            /// <summary>A compiler intrinsic that gets character from a string</summary>
-            [<CompilerMessage("This function is for use by compiled F# code and should not be used directly", 1204, IsHidden=true)>]
-            val inline GetStringChar : source:string -> index:int -> char
-
-            /// <summary>A compiler intrinsic that gets the length of string</summary>
-            [<CompilerMessage("This function is for use by compiled F# code and should not be used directly", 1204, IsHidden=true)>]
-            val inline GetStringLength : source:string -> int
-
             /// <summary>This function implements calls to default constructors
             /// acccessed by 'new' constraints.</summary>
             [<CompilerMessage("This function is for use by compiled F# code and should not be used directly", 1204, IsHidden=true)>]

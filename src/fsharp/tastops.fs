@@ -5913,6 +5913,8 @@ let mkIsInst ty e m = mkAsmExpr ([ isinst ], [ty],[e], [ ty ], m)
 
 let mspec_Object_GetHashCode     ilg = IL.mkILNonGenericInstanceMethSpecInTy(ilg.typ_Object,"GetHashCode",[],ilg.typ_int32)
 let mspec_Type_GetTypeFromHandle ilg = IL.mkILNonGenericStaticMethSpecInTy(ilg.typ_Type,"GetTypeFromHandle",[ilg.typ_RuntimeTypeHandle],ilg.typ_Type)
+let mspec_String_Length          ilg = mkILNonGenericInstanceMethSpecInTy (ilg.typ_String, "get_Length", [], ilg.typ_int32)
+
 let fspec_Missing_Value  ilg = IL.mkILFieldSpecInTy(ilg.typ_Missing.Value, "Value", ilg.typ_Missing.Value)
 
 
@@ -6059,8 +6061,13 @@ let mkCallQuoteToLinqLambdaExpression g m ty e1 =
 let mkLazyDelayed g m ty f = mkApps g (typedExprForIntrinsic g m g.lazy_create_info, [[ty]], [ f ],  m) 
 let mkLazyForce g m ty e = mkApps g (typedExprForIntrinsic g m g.lazy_force_info, [[ty]], [ e; mkUnit g m ],  m) 
 
-let mkGetStringChar   g m e1 e2 = mkApps g (typedExprForIntrinsic g m g.getstringchar_info  , [], [e1;e2]   , m)
-let mkGetStringLength g m e     = mkApps g (typedExprForIntrinsic g m g.getstringlength_info, [], [e]       , m)
+let mkGetString g m e1 e2 = mkApps g (typedExprForIntrinsic g m g.getstring_info, [], [e1;e2], m)
+let mkGetStringChar = mkGetString
+let mkGetStringLength g m e = 
+    let mspec = mspec_String_Length g.ilg
+    /// ILCall(useCallvirt,isProtected,valu,newobj,valUseFlags,isProp,noTailCall,mref,actualTypeInst,actualMethInst, retTy)
+    Expr.Op(TOp.ILCall(false,false,false,false,ValUseFlag.NormalValUse,true,false,mspec.MethodRef,[],[],[g.int32_ty]),[],[e],m)
+
 
 // Quotations can't contain any IL.
 // As a result, we aim to get rid of all IL generation in the typechecker and pattern match
@@ -7826,10 +7833,11 @@ let DetectAndOptimizeForExpression g option expr =
         let strVar      ,strExpr    = mkCompGenLocal m "str" ty
         let idxVar      ,idxExpr    = mkCompGenLocal m "idx" g.int32_ty
 
-        let startExpr               = mkZero g m
-        let lengthExpr              = mkGetStringLength g mForLoop strExpr
-        let finishExpr              = mkDecr g mForLoop lengthExpr
+        let lengthExpr              = mkGetStringLength g m strExpr
         let charExpr                = mkGetStringChar g m strExpr idxExpr
+
+        let startExpr               = mkZero g m
+        let finishExpr              = mkDecr g mForLoop lengthExpr
         let loopItemExpr            = mkCoerceIfNeeded g elemVar.Type g.char_ty charExpr  // for compat reasons, loop item over string is sometimes object, not char
         let bodyExpr                = mkCompGenLet mBody elemVar loopItemExpr bodyExpr
         let forExpr                 = mkFastForLoop g (spForLoop,m,idxVar,startExpr,true,finishExpr,bodyExpr)

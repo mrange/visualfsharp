@@ -483,8 +483,7 @@ type public TcGlobals =
 
       dispose_info              : IntrinsicValRef;
 
-      getstringchar_info        : IntrinsicValRef;
-      getstringlength_info      : IntrinsicValRef;
+      getstring_info            : IntrinsicValRef;
 
       range_op_vref             : ValRef;
       range_step_op_vref        : ValRef;
@@ -898,8 +897,7 @@ let mkTcGlobals (compilingFslib,sysCcu,ilg,fslibCcu,directoryToResolveRelativePa
 
   let dispose_info               = makeIntrinsicValRef(fslib_MFIntrinsicFunctions_nleref,                    "Dispose"                              ,None                 ,None          ,[vara],     ([[varaTy]],unit_ty))
 
-  let getstringchar_info         = makeIntrinsicValRef(fslib_MFIntrinsicFunctions_nleref,                    "GetStringChar"                        ,None                 ,None          ,[],         ([[string_ty];[int_ty]],char_ty))
-  let getstringlength_info       = makeIntrinsicValRef(fslib_MFIntrinsicFunctions_nleref,                    "GetStringLength"                      ,None                 ,None          ,[],         ([[string_ty]],int_ty))
+  let getstring_info             = makeIntrinsicValRef(fslib_MFIntrinsicFunctions_nleref,                    "GetString"                            ,None                 ,None          ,[],         ([[string_ty];[int_ty]],char_ty))
 
   let reference_equality_inner_info = makeIntrinsicValRef(fslib_MFHashCompare_nleref,                        "PhysicalEqualityIntrinsic"            ,None                 ,None          ,[vara],     mk_rel_sig varaTy)  
 
@@ -1408,8 +1406,7 @@ let mkTcGlobals (compilingFslib,sysCcu,ilg,fslibCcu,directoryToResolveRelativePa
     get_generic_er_equality_comparer_info        = get_generic_er_equality_comparer_info;
     get_generic_per_equality_comparer_info    = get_generic_per_equality_comparer_info;
     dispose_info               = dispose_info;
-    getstringchar_info         = getstringchar_info;
-    getstringlength_info       = getstringlength_info;
+    getstring_info             = getstring_info;
     unbox_fast_info            = unbox_fast_info;
     istype_info                = istype_info;
     istype_fast_info           = istype_fast_info;
