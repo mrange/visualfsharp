@@ -1,6 +1,6 @@
 [![Issue Stats](http://issuestats.com/github/Microsoft/visualfsharp/badge/pr)](http://issuestats.com/github/microsoft/visualfsharp)
 [![Issue Stats](http://issuestats.com/github/Microsoft/visualfsharp/badge/issue)](http://issuestats.com/github/microsoft/visualfsharp)
-[![Build status](https://ci.appveyor.com/api/projects/status/sf3s485t5utl31b7/branch/fsharp4?svg=true)](https://ci.appveyor.com/project/KevinRansom/visualfsharp-radou/branch/fsharp4)
+[![Build status](https://img.shields.io/appveyor/ci/KevinRansom/visualfsharp-radou/fsharp4.svg)](https://ci.appveyor.com/project/KevinRansom/visualfsharp-radou/branch/fsharp4)
 
 #Visual F# Tools
 
@@ -11,6 +11,11 @@ You are invited to join with the F# Community and the Visual F# Tools team to he
 F# is a mature, open source, cross-platform, functional-first programming language which empowers users and organizations to tackle complex computing problems with simple, maintainable, and robust code. F# is used in a wide range of application areas and is supported by Microsoft and other industry-leading companies providing professional tools, and by an active open community. You can find out more about F# at http://fsharp.org.
 
 Changes contributed here are packaged into the Visual F# Tools, the F# Open Edition, and other open source F# editing tools. Microsoft coordinates packaging this repository as part of the Visual F# Tools, while the F# community coordinates packaging it as the Open Edition of F# for use on Linux, OSX, Android, iOS, and other platforms, via the [fsharp/fsharp GitHub repo](https://github.com/fsharp/fsharp/).
+
+## We're having a Bugbash!!!!   find bugs and win a __Cup<`t>__
+
+[Bug bash page](https://github.com/Microsoft/visualfsharp/wiki/Have-a-Cup-'t--Visual-F%23-Tools-March-Bugbash)
+
 
 ###Engineering status
 
