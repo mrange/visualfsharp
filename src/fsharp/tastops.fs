@@ -6063,7 +6063,7 @@ let mkLazyForce g m ty e = mkApps g (typedExprForIntrinsic g m g.lazy_force_info
 
 let mkGetString g m e1 e2 = mkApps g (typedExprForIntrinsic g m g.getstring_info, [], [e1;e2], m)
 let mkGetStringChar = mkGetString
-let mkGetStringLength g m e = 
+let mkGetStringLength g m e =
     let mspec = mspec_String_Length g.ilg
     /// ILCall(useCallvirt,isProtected,valu,newobj,valUseFlags,isProp,noTailCall,mref,actualTypeInst,actualMethInst, retTy)
     Expr.Op(TOp.ILCall(false,false,false,false,ValUseFlag.NormalValUse,true,false,mspec.MethodRef,[],[],[g.int32_ty]),[],[e],m)
