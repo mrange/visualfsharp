@@ -1,4 +1,4 @@
-// #CodeGen #Optimizations
+// #CodeGen #Optimizations #NoMono #ReqNOMT
 // Compiler should turn 'foreach' loops over list literals into 'for' loops
 module ForEachOnListLiteral
 let test() =
