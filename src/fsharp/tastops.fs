@@ -7785,7 +7785,7 @@ let (|RangeInt32Step|_|) g expr =
 
     | _ -> None
 
-let (|SeqRangeInt32Step|_|) g expr =
+let (|ListRangeInt32Step|_|) g expr =
     match expr with
     // detect '[n .. m]'
     | Expr.App(Expr.Val(toList,_,_),_,[TType_var _],
@@ -7803,7 +7803,7 @@ let (|SeqRangeInt32Step|_|) g expr =
 let (|ExtractInt32Range|_|) g expr =
   match expr with
   | RangeInt32Step g range -> Some range
-  | SeqRangeInt32Step g range -> Some range
+  | ListRangeInt32Step g range -> Some range
   | _ -> None
 
 // Detect the compiled or optimized form of a 'for <elemVar> in <startExpr> .. <finishExpr>  do <bodyExpr>' expression over integers
